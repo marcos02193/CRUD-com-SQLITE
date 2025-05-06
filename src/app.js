@@ -1,6 +1,6 @@
 import express from "express";
 import userRoutes from "./routes/userRouters.js";
-
+import useproduct from "./routes/productroutes.js"
 const app = express();
 
 /* Permite que o Express entenda
@@ -11,5 +11,6 @@ app.use(express.json());
  * rotas de usuários
  */
 app.use("/users", userRoutes);
+app.use("/product", useproduct)
 
 export default app;

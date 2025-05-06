@@ -7,13 +7,13 @@ export const getAllUsers = async (req, res) => {
   };
   
   export const createUser  =  async (req, res) => {
-    const { name, email } = req.body;
+    const { name, email, password } = req.body;
 
 try {
     // tento fazer algo aqui
 
     const newUser = await prisma.user.create({
-        data: {name, email}
+        data: {name, email, password}
     })
     res.status(201).json(newUser);
 } catch (error) {
@@ -27,11 +27,11 @@ try {
 
   export const updateusers = async (req, res) => {
     const id = req.params.id
-    const {name, email} = req.body
+    const {name, email, password} = req.body
     try {
         const updateuser = await prisma.user.update({
             where:{id: parseInt(id)},
-            data: {name, email}
+            data: {name, email, password}
         })
         res.status(200).json(updateuser)
         
@@ -73,7 +73,7 @@ export const getuserid = async (req, res) =>{
     res
     } catch (error) {
         res.status(500).json({
-            messagem:"erro ao deletar usuario",
+            messagem:"erro ao encontra o usuario",
             erro: error.message
         })
     }
